@@ -1,6 +1,8 @@
-'''code from fullstackpython
+'''Code based on fullstackpython
 https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
 and Pybites https://github.com/pybites/slackbot
+to help set up the bot.
+
 '''
 
 import time
@@ -52,15 +54,12 @@ COMMANDS.update(COMMANDS_HELLO,)
 def handle_command(text, channel, sender):
     '''
     :param text:  A text string containing a command directed at the bot
-
     :param channel: A string containing the channel that the command was given
     from.
-
     :return: If command is a valid command, execute that command. If not,
     display a message that the command is not valid.
     '''
-
-    # Strip punctuation and separate commands into additional arguments
+    # Strip punctuation and separate words into additional arguments
     parsed = text.translate(text.maketrans("", "", string.punctuation)).split()
     command, args = parsed[0], parsed[1:]
 
@@ -87,13 +86,15 @@ def parse_slack_output(events):
     event is stored as a dictionary and the events are stored in a list. Certain
     elements of the event can be extracted using dict functionality.
 
-    :return: If an even directly mentions the bot, return the command and the
-    channel and the user that sent the command. Otherwise return None for all
+    :return: If an event directly mentions the bot (ignoring self-mentions by
+    the bot), return the command, channel and user that sent the command.
+    Otherwise return None for all.
 
     '''
     if events and len(events) > 0:
         logging.debug('event in parse_slack_output(): ' + str(events))
         for event in events:
+            # Parse events that contain text mentioning the bot.
             if event and 'text' in event and AT_BOT in event['text']:
                 # return text after the @ mention, whitespace removed
                 text = event['text'].split(AT_BOT)[1].strip().lower()
@@ -116,10 +117,8 @@ def slack_bot(read_delay=2):
     loop where it will check all slack events for messages that are directed at
     it (via parse_slack_output). Any direct messages are passed to
     handle_command, which will attempt to execute the command.
-
     :param read_delay: Implements a 1 second delay between each loop of of the
     function to prevent CPU overload.
-
     :return: If the bot successfully connects, it will display a success
     message. If it fails, display a failure message. Outputs from handle_command
     are posted directly to Slack.
@@ -129,7 +128,7 @@ def slack_bot(read_delay=2):
     if slack_client.rtm_connect():
         print("BBbot is connected and running!")
         # Command below can be used to retrieve ID
-        logging.debug('ID: ' + slack_client.api_call('auth.test')['user_id'])
+        logging.debug('Bot ID: ' + slack_client.api_call('auth.test')['user_id'])
         while True:
             command, channel, user = parse_slack_output(slack_client.rtm_read())
             if command and channel and user:
