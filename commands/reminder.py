@@ -1,4 +1,5 @@
 '''
+****NOT READY TO BE INCORPORATED****
 This command is import into BBbot.py as a command that the Slack bot can
 handle. When called by any of the keywords listed in `keys`, command_hi() will
 be executed.

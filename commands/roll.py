@@ -6,6 +6,7 @@ be executed.
 import logging
 import random
 
+
 def command_roll(sender, args=None):
 	'''
 	:param sender: Person who sent the command
@@ -18,6 +19,7 @@ def command_roll(sender, args=None):
 	logging.debug('command_roll() evaluated.')
 	logging.debug('args in command_roll: ' + str(args))
 	sides_on_die = 20
+
 	if args:
 		for item in args:
 			logging.debug('item in command_roll: ' + str(item))
@@ -25,9 +27,15 @@ def command_roll(sender, args=None):
 				sides_on_die = int(item)
 				break
 	logging.debug('sides_on_die in command_roll: ' + str(sides_on_die))
+
 	roll = random.randint(1, sides_on_die)
-	return '<@{}> rolled {} on a {}-sided die!'.format(
-		sender, roll, sides_on_die)
+
+	if roll == 1: emote = '(╯°□°）╯︵ ┻━┻ '
+	elif roll == sides_on_die: emote = '(づ◕‿◕)づ '
+	else: emote = ''
+	logging.debug('emote: ' + str(emote))
+	return '{}<@{}> rolled {} on a {}-sided die!'.format(
+		emote, sender, roll, sides_on_die)
 
 
 keys = ('roll', 'dice', 'die')
@@ -47,6 +55,7 @@ COMMANDS_ROLL = dict(zip(keys, elements))
 # @bbbot2 roll a 400-sided die
 # @bbbot2 roll 50.2
 # @bbbot2 roll 0.5
+# @bbbot2 roll 2    # Roll until you get 1 and 2
 #
 # # These are evaluated the same way as roll. I only need to check that these
 # # commands properly call the function.

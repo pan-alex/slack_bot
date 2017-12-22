@@ -123,7 +123,7 @@ def parse_slack_output(events):
     return None, None, None
 
 
-def slack_bot(read_delay=2):
+def slack_bot(read_delay=1):
     '''
     Initializes the bot. Once initialized, the bot will run through an infinite
     loop where it will check all slack events for messages that are directed at
