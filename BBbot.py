@@ -9,7 +9,10 @@ import time
 import logging
 import string
 from slackclient import SlackClient
+
+# Commands
 from commands.hello import COMMANDS_HELLO
+from commands.roll import COMMANDS_ROLL
 
 
 # ¯\_(ツ)_/¯
@@ -29,16 +32,19 @@ slack_client = SlackClient(SLACK_BOT_TOKEN)
 
 ############
 
-def command_help(*args):
+def command_help(sender, args=None):
     '''
-    :param args: Any text after the word 'help'. Does nothing with them.
-    :return: A list of available commands.
+    :param sender: The sender, which is force-fed to the function when it is
+    called by handle_command(). Does nothing with it.
+    :param args: Any text after the word 'help'. Likewise, args are force-fed to
+    the function when it is called by handle_command(). Does nothing with them.
+    :return: Outputs a list of valid commands.
     '''
     response = ("Use the syntax: '{} *command*' so that I know you're talking to "
                 "me!\n Here is a list of commands I know how to respond to:"
                 "\n").format(AT_BOT)
-    # Append the list of commands. Crop out parentheses and 'dict_keys'
-    response += str(COMMANDS.keys())[11:-2]
+    # Append the list of commands. Crop out brackets
+    response += str(sorted(COMMANDS))[1:-1]
     return response
 
 #################
@@ -47,26 +53,32 @@ def command_help(*args):
 # dictionary here is updated. The key is the text that the user types to call
 # the command; the value is the function that will be executed.
 COMMANDS = {'help': command_help}
-COMMANDS.update(COMMANDS_HELLO,)
+COMMANDS.update(COMMANDS_HELLO)
+COMMANDS.update(COMMANDS_ROLL)
 
 #################
 
 def handle_command(text, channel, sender):
     '''
+    **Important note** - This function converts punctuation to spaces instead of
+    concatenating. I'm not sure if this will break the code at some later time.
+
     :param text:  A text string containing a command directed at the bot
     :param channel: A string containing the channel that the command was given
     from.
     :return: If command is a valid command, execute that command. If not,
     display a message that the command is not valid.
     '''
-    # Strip punctuation and separate words into additional arguments
-    parsed = text.translate(text.maketrans("", "", string.punctuation)).split()
+    # Convert punctuation to spaces and separate words into additional arguments
+    parsed = text.translate(
+        text.maketrans(string.punctuation,
+                       ' ' * len(string.punctuation))).split()
     command, args = parsed[0], parsed[1:]
 
     # Retrieve info on the sender, extract display name
 
     if command in COMMANDS:
-        if args: response = COMMANDS[command](sender, *args)
+        if args: response = COMMANDS[command](sender, args)
         else: response = COMMANDS[command](sender,)
     else:
         response = ("(´･_･`) Sorry <@{}>... No one ever taught me how to answer that."
@@ -129,6 +141,7 @@ def slack_bot(read_delay=2):
         print("BBbot is connected and running!")
         # Command below can be used to retrieve ID
         logging.debug('Bot ID: ' + slack_client.api_call('auth.test')['user_id'])
+        BOT_ID = slack_client.api_call('auth.test')['user_id']
         while True:
             command, channel, user = parse_slack_output(slack_client.rtm_read())
             if command and channel and user:
