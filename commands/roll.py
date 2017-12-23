@@ -7,23 +7,26 @@ import logging
 import random
 
 
-def command_roll(sender, args=None):
+def command_roll(sender, other_text=None):
 	'''
 	:param sender: Person who sent the command
-	:param args: A list containing all of the words following the command
-	itself. The function looks integers inside this list and uses the first
-	integer it encounters as the number of sides on the die.
+	:param other_text: A string containing all of the words following the
+	command itself. The function looks integers inside this list and uses the
+	first integer it encounters as the number of sides on the die.
 	:return: Randomly generates an integer between 1 and the number of sides on
 	the die. If no number is supplied in args, it defaults to 20.
 	'''
 	logging.debug('command_roll() evaluated.')
-	logging.debug('args in command_roll: ' + str(args))
+	logging.debug('other_text in command_roll: ' + other_text)
 	sides_on_die = 20
+
+	args = other_text.translate(other_text.maketrans('-', ' ')).split()
+	logging.debug('args in command_roll: ' + str(other_text))
 
 	if args:
 		for item in args:
 			logging.debug('item in command_roll: ' + str(item))
-			if item.isdigit() and int(item) > 1:
+			if item.isnumeric() and int(item) > 1:
 				sides_on_die = int(item)
 				break
 	logging.debug('sides_on_die in command_roll: ' + str(sides_on_die))
@@ -48,13 +51,12 @@ COMMANDS_ROLL = dict(zip(keys, elements))
 # # roll 0.5 and -5 return a 5-sided die. This is because punctuation chars
 # # are replaced with spaces so the integers are read separately from punctuation
 # # marks. I can't decide it this is a bug or a feature.
-# @bbbot2 roll 0.5    # Number below 1
+# @bbbot2 roll 0.5    # function does not interpret decimals. return 20
 # @bbbot2 roll -5    # Number below 1
 # @bbbot2 roll 0    # Number below 1; should roll 20
 # hey @bbbot2 roll a 30 sided die for me!
 # @bbbot2 roll a 400-sided die
-# @bbbot2 roll 50.2
-# @bbbot2 roll 0.5
+# @bbbot2 roll 50.2    # function does not interpret decimals. return 20
 # @bbbot2 roll 2    # Roll until you get 1 and 2
 #
 # # These are evaluated the same way as roll. I only need to check that these

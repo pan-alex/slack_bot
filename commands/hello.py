@@ -6,10 +6,10 @@ be executed.
 import logging
 
 
-def command_hi(sender, args=None):
+def command_hi(sender, other_text=None):
     """
     :param sender: Person who sent the message
-    :param args: Any other text in the message that was issued with the command.
+    :param other_text: Any other text in the message that was issued with the command.
     This is force-fed to the function when called by handle_command(). This
     function does nothing with args.
     :returns: 'Hi <@sender>!'

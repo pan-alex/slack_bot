@@ -17,7 +17,7 @@ from commands.roll import COMMANDS_ROLL
 
 # ¯\_(ツ)_/¯
 
-logging.basicConfig(level=logging.DEBUG)
+logging.getLogger().setLevel(logging.DEBUG)
 
 # Constants
 # SLACK_BOT_TOKEN is stored in a c file to keep it out of version control.
@@ -58,6 +58,22 @@ COMMANDS.update(COMMANDS_ROLL)
 
 #################
 
+
+def parse_command(text):
+    """
+    Intended to wrapped by handle_command().
+    :text: A string. The Slack message directed at the bot, minus the <@bot>
+    mention itself.
+    :return: Converts punctuation on the first word to spaces and interprets the
+    first word as the command. Returns the remaining text as a string without
+    punctuation stripping.
+    """
+    s = string.punctuation
+    command = text.translate(text.maketrans(s, ' ' * len(s))).split()[0]
+    other_text = ' '.join(text.split()[1:])
+    return command, other_text
+
+
 def handle_command(text, channel, sender):
     '''
     **Important note** - This function converts punctuation to spaces instead of
@@ -69,16 +85,10 @@ def handle_command(text, channel, sender):
     :return: If command is a valid command, execute that command. If not,
     display a message that the command is not valid.
     '''
-    # Convert punctuation to spaces and separate words into additional arguments
-    parsed = text.translate(
-        text.maketrans(string.punctuation,
-                       ' ' * len(string.punctuation))).split()
-    command, args = parsed[0], parsed[1:]
-
-    # Retrieve info on the sender, extract display name
+    command, other_text = parse_command(text)
 
     if command in COMMANDS:
-        if args: response = COMMANDS[command](sender, args)
+        if other_text: response = COMMANDS[command](sender, other_text)
         else: response = COMMANDS[command](sender,)
     else:
         response = ("(´･_･`) Sorry <@{}>... No one ever taught me how to answer that."
