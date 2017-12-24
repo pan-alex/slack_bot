@@ -7,7 +7,7 @@ import logging
 import random
 
 
-def command_roll(sender, other_text=None):
+def command_roll(sender, other_text=''):
 	'''
 	:param sender: Person who sent the command
 	:param other_text: A string containing all of the words following the
@@ -40,6 +40,7 @@ def command_roll(sender, other_text=None):
 	return '{}<@{}> rolled {} on a {}-sided die!'.format(
 		emote, sender, roll, sides_on_die)
 
+####
 
 keys = ('roll', 'dice', 'die')
 elements = [command_roll] * len(keys)
@@ -51,6 +52,7 @@ COMMANDS_ROLL = dict(zip(keys, elements))
 # # roll 0.5 and -5 return a 5-sided die. This is because punctuation chars
 # # are replaced with spaces so the integers are read separately from punctuation
 # # marks. I can't decide it this is a bug or a feature.
+# @bbbot2 roll
 # @bbbot2 roll 0.5    # function does not interpret decimals. return 20
 # @bbbot2 roll -5    # Number below 1
 # @bbbot2 roll 0    # Number below 1; should roll 20
