@@ -1,5 +1,4 @@
 '''
-**** NOT READY FOR INCORPORATION ****
 This command is import into BBbot.py as a command that the Slack bot can
 handle. When called by any of the keywords listed in `keys`, command_add() will
 be executed.
@@ -13,13 +12,14 @@ DELIMITERS = r'[,;]+|and | to '
 # same as string.punctuation but exclude: , ; - (keep hyphenated words)
 PUNCTUATION = '!"#$%&\'()*+./:<=>?@[\\]^_`{|}~'
 
-TEST = 'apples, peanuts, oranges and pizza, and apricots to my todo list please'
-TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
+# TEST = 'apples, peanuts, oranges and pizza, and apricots to my todo list please'
+# TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
 
 
-def command_add_remove_punctuation(other_text=''):
+def list_remove_punctuation(other_text=''):
 	'''
-	This is a function to be wrapped in command_add().
+	This is a function to be wrapped in the list commands:
+	 * command_add(), command_delete(),
 	
 	:param other_text: String containing any other text in the message that
 	was issued after the 'add' command. Will remove any punctuation, other than
@@ -35,7 +35,7 @@ def command_add_remove_punctuation(other_text=''):
 def command_add_correct_syntax(text_no_punc=''):
 	'''
 	This is a function to be wrapped in command_add() and fed a string from
-	command_add_remove_punctuation(). This function exists to check that the 
+	list_remove_punctuation(). This function exists to check that the
 	correct syntax was supplied to command_add().
 
 	:param text_no_punc: A string with no punctuation except for those in
@@ -106,11 +106,11 @@ def command_add(sender, other_text=''):
 	new file was created.
 	"""
 	logging.debug('command_add() evaluated.')
-	text_no_punc = command_add_remove_punctuation(other_text)
+	text_no_punc = list_remove_punctuation(other_text)
 	logging.debug('text_no_punc in command_add(): ' + text_no_punc)
 
 	if not command_add_correct_syntax(text_no_punc):
-		return ("(⊙_☉)7 Sorry... I'm didn't understand that syntax."
+		return ("(⊙_☉)7 Sorry... I didn't understand that syntax."
 		        " Try this: 'add eggs, milk, and cheese to my grocery list.'")
 	else:
 		# Parse the text by splitting the string at delimiters.
