@@ -13,7 +13,7 @@ DELIMITERS = r'[,;]+|and | to '
 PUNCTUATION = '!"#$%&\'()*+./:<=>?@[\\]^_`{|}~'
 
 # TEST = 'apples, peanuts, oranges and pizza, and apricots to my todo list please'
-# TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
+TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
 
 
 def list_remove_punctuation(other_text=''):
@@ -52,7 +52,15 @@ def command_add_correct_syntax(text_no_punc=''):
 	* ... are any words that can exist in between key words but are ignored.
 
 	:return: A bool. False if any syntax errors exist and True if no syntax
-	errors exist.
+	errors exist. Conditions checked:
+
+	* 1: 'to' is in the message
+	* 2: 'list' is in the message
+	* 3: 'to' is not the first word (i.e., the command has a list item to add)
+	* 4: 'to' must come at least one word before 'list' (i.e., the list must
+	  have a name)
+	* 5: No delimiters should appear after the word 'to'
+
 	'''
 	logging.debug('text_no_punc in command_add_correct_syntax: ' + text_no_punc)
 	text_as_list = text_no_punc.split()
@@ -66,8 +74,7 @@ def command_add_correct_syntax(text_no_punc=''):
 		# 'to' should come before 'list', and there should be at least one word
 		# between 'to' and 'list'.
 		cond4 = text_as_list.index('to') + 1 < text_as_list.index('list')
-		# Super convoluted way of saying: No delimiters should appear after
-		# the first 'to'. Must improve this.
+		# cond5 is super convoluted. Must improve.
 		cond5 = re.split(DELIMITERS, ' '.join(text_as_list[text_as_list.index('to'):]))
 		cond5 = len(cond5) == 1
 		logging.debug(
@@ -81,6 +88,9 @@ def command_add_correct_syntax(text_no_punc=''):
 
 def command_add(sender, other_text=''):
 	"""
+	**Note to self: Implement a way to not write in duplicates**
+
+
 	:param sender: Person who sent the message. This is force-fed to the
 	function when called by handle_command(). Does nothing with it.
 

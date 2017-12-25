@@ -1,0 +1,3 @@
+show all lists
+dont write duplicates
+delete lists
