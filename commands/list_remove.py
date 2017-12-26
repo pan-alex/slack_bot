@@ -7,13 +7,12 @@ will be executed.
 import logging
 import re
 import os
-from commands.list_add import list_remove_punctuation, PUNCTUATION
+from commands.list_globals import list_remove_punctuation, PUNCTUATION
 
 DELIMITERS = r'[,;]+|and | from '
 
 TEST = 'apples, peanuts, oranges and pizza, and apricots from my todo list please'
 TEST = 'pizza, pp, and pineapple from that one thing... Oh yeah! The grocery list. Thanks!'
-
 
 
 def command_remove_correct_syntax(text_no_punc=''):
@@ -185,9 +184,9 @@ def command_remove(sender, other_text=''):
 
 ####
 
-keys = ('add',)
+keys = ('remove',)
 elements = [command_remove] * len(keys)
-COMMANDS_ADD = dict(zip(keys, elements))
+COMMANDS_REMOVE = dict(zip(keys, elements))
 
 #### tests to run in Slack
 # '''

@@ -6,30 +6,13 @@ be executed.
 import logging
 import re
 import os
-import string
+from commands.list_globals import list_remove_punctuation, PUNCTUATION
 
 DELIMITERS = r'[,;]+|and | to '
-# same as string.punctuation but exclude: , ; - (keep hyphenated words)
-PUNCTUATION = '!"#$%&\'()*+./:<=>?@[\\]^_`{|}~'
+
 
 # TEST = 'apples, peanuts, oranges and pizza, and apricots to my todo list please'
 TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
-
-
-def list_remove_punctuation(other_text=''):
-	'''
-	This is a function to be wrapped in the list commands:
-	 * command_add(), command_delete(),
-	
-	:param other_text: String containing any other text in the message that
-	was issued after the 'add' command. Will remove any punctuation, other than
-	those in DELIMITERS.
-	
-	:return: Returns a string, which is other_text with the punctuation removed.
-	'''
-	text_no_punc = other_text.translate(
-		other_text.maketrans(PUNCTUATION, ' ' * len(PUNCTUATION)))
-	return text_no_punc
 
 
 def command_add_correct_syntax(text_no_punc=''):
@@ -159,18 +142,18 @@ elements = [command_add] * len(keys)
 COMMANDS_ADD = dict(zip(keys, elements))
 
 #### tests to run in Slack
-'''
-@bbbot2 add pizza and cheerios to my grocery list
-@bbbot2 add eggs, milk, and cheese to my grocery list.
-@bbbot2 add pizza, a big fat platter, cheerios; and ,,; juice to a new list
-@bbbot2 add pizza to that one thing... Oh yeah! The grocery list. Thanks!
-@bbbot2 add exercise to my to-do list    # This should work
-
-These should call a failure response
-@bbbot2 add
-@bbbot2 add to
-@bbbot2 add list
-@bbbot2 add to list
-@bbbot2 add exercise to my, to-do list
-@bbbot2 add cheerios, list pizza and cheerios to my grocery list
-'''
+# '''
+# @bbbot2 add pizza and cheerios to my grocery list
+# @bbbot2 add eggs, milk, and cheese to my grocery list.
+# @bbbot2 add pizza, a big fat platter, cheerios; and ,,; juice to a new list
+# @bbbot2 add pizza to that one thing... Oh yeah! The grocery list. Thanks!
+# @bbbot2 add exercise to my to-do list    # This should work
+#
+# These should call a failure response
+# @bbbot2 add
+# @bbbot2 add to
+# @bbbot2 add list
+# @bbbot2 add to list
+# @bbbot2 add exercise to my, to-do list
+# @bbbot2 add cheerios, list pizza and cheerios to my grocery list
+# '''

@@ -24,7 +24,9 @@ from slackclient import SlackClient
 # Commands
 from commands.hello import COMMANDS_HELLO
 from commands.roll import COMMANDS_ROLL
+from commands.list_remove import COMMANDS_REMOVE
 from commands.list_add import COMMANDS_ADD
+
 
 
 # ¯\_(ツ)_/¯
@@ -71,6 +73,7 @@ COMMANDS = {'help': command_help}
 COMMANDS.update(COMMANDS_HELLO)
 COMMANDS.update(COMMANDS_ROLL)
 COMMANDS.update(COMMANDS_ADD)
+COMMANDS.update(COMMANDS_REMOVE)
 
 #################
 
