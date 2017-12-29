@@ -25,11 +25,12 @@ def command_remove_correct_syntax(text_no_punc=''):
 	DELIMITERS. Function will look for certain keywords
 	based on the syntax:
 
-	"[__], [__], [__] and [__] to ... (___) list ..."
+	"[__], [__], [__] and [__] from ... (___) list ..."
 
 	* [__] represent list items (things to be added to the list; e.g., 'eggs')
+	* (__) is the name of the list
 	* List items must be separated by designated delimiters: 'and' ',' ';'
-	* 'to' signals the end of the list items. Anything before 'to' will be added
+	* 'from' signals the end of the list items. Anything before 'to' will be added
 	  to the list, while everything after will be ignored. Only one 'to' should
 	  be supplied in the sentence.
 	* ... are any words that can exist in between key words but are ignored.
