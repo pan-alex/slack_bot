@@ -109,9 +109,6 @@ def parse_command(text):
 
 def handle_command(text, channel, sender):
     '''
-    **Important note** - This function converts punctuation to spaces instead of
-    concatenating. I'm not sure if this will break the code at some later time.
-
     :param text:  A text string containing a command directed at the bot
 
     :param channel: A string containing the channel that the command was given
