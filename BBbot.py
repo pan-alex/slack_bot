@@ -188,14 +188,13 @@ def slack_bot(read_delay=1):
         print("BBbot is connected and running!")
         # Command below can be used to retrieve ID
         logging.debug('Bot ID: ' + slack_client.api_call('auth.test')['user_id'])
-        BOT_ID = slack_client.api_call('auth.test')['user_id']
         while True:
             command, channel, user = find_slack_commands(slack_client.rtm_read())
             if command and channel and user:
                 handle_command(command, channel, user)
             time.sleep(read_delay)
     else:
-        print("Connection failed. Invalid Slack token or bot ID?")
+        print("Connection failed. Check Slack token and/or bot ID")
 
 
 if __name__ == "__main__":
