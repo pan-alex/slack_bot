@@ -61,6 +61,8 @@ def command_help(sender, other_text=''):
                 "\n").format(AT_BOT)
     # Append the list of commands. Crop out brackets
     response += str(sorted(COMMANDS))[1:-1]
+    response += ("\nStill confused? Find out how I work at "
+        "https://github.com/pan-alex/slack_bot")
     return response
 
 

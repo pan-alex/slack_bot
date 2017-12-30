@@ -7,12 +7,12 @@ will be executed.
 import logging
 import re
 import os
-from commands.list_globals import list_remove_punctuation, PUNCTUATION
+from commands.list_globals import list_remove_punctuation
 
 DELIMITERS = r'[,;]+|and | from '
 
-TEST = 'apples, peanuts, oranges and pizza, and apricots from my todo list please'
-TEST = 'pizza, pp, and pineapple from that one thing... Oh yeah! The grocery list. Thanks!'
+# TEST = 'apples, peanuts, oranges and pizza, and apricots from my todo list please'
+# TEST = 'pizza, pp, and pineapple from that one thing... Oh yeah! The grocery list. Thanks!'
 
 
 def command_remove_correct_syntax(text_no_punc=''):
@@ -54,8 +54,6 @@ def command_remove_correct_syntax(text_no_punc=''):
 
 	if cond1 and cond2:
 		cond3 = text_as_list.index('from') > 0
-		# 'from' should come before 'list', and there should be at least one word
-		# between 'to' and 'list'.
 		cond4 = text_as_list.index('from') + 1 < text_as_list.index('list')
 		# cond5 is super convoluted. Must improve.
 		cond5 = re.split(DELIMITERS, ' '.join(text_as_list[text_as_list.index('from'):]))
@@ -82,21 +80,29 @@ def command_remove_edit_file(path, list_items):
 	:return: two lists:
 	* passed: all items in list_items that are also in the file
 	* failed: all items in list_items that are not in the file
+	* If 'all' or 'everything' are passed as the only list items, `passed` and
+	  `failed` will both be empty lists.
 	'''
 	passed = []
 	failed = []
-	with open(path, 'r') as file:
-		file_list = file.read().split('\n')
-		for item in list_items:
-			if item in file_list: passed.append(item)
-			else: failed.append(item)
-	updated_list = [item for item in file_list if item not in passed]
-	# Write the changes
-	with open(path, 'w') as file:
-		for item in updated_list: file.write(item + '\n')
+	# If the only list item is 'all' or 'everything', delete the contents of the
+	# list. command_remove_correct_syntax() will ensure that no empty lists are
+	# passed to this function.
+	if list_items == ['all'] or ['everything']:
+		open(path, 'w').close()
+	else:
+		with open(path, 'r') as file:
+			file_list = file.read().split('\n')
+			for item in list_items:
+				if item in file_list: passed.append(item)
+				else: failed.append(item)
+		updated_list = [item for item in file_list if item not in passed]
+		# Write the changes
+		with open(path, 'w') as file:
+				for item in updated_list: file.write(item + '\n')
 
-	logging.debug('passed in command_remove(): ' + str(passed))
-	logging.debug('failed in command_remove(): ' + str(failed))
+		logging.debug('passed in command_remove(): ' + str(passed))
+		logging.debug('failed in command_remove(): ' + str(failed))
 
 	return passed, failed
 
@@ -160,7 +166,7 @@ def command_remove(sender, other_text=''):
 	elif os.path.isfile(path):
 		passed, failed = command_remove_edit_file(path, list_items)
 
-	# Return message based on success/failure/mix
+	# Return message based on conditions below.
 	if passed != []:
 		removed = ', '.join(passed)
 		# All items were in list
@@ -170,15 +176,19 @@ def command_remove(sender, other_text=''):
 		# Some items were in the list
 		else:
 			not_present = ', '.join(failed)
-			response = ("I've removed *{}* from the *{}*, but the following "
+			response = ("I've removed *{}* from your *{}*, but the following "
 			            "were never in the list to start with: *{}*"
 				.format(removed, list_name, not_present))
 	# None of the items were in the list
-	else:
+	elif failed != []:
 		not_present = ', '.join(failed)
-		response = ("None of the items you mentioned were in *{}*. "
+		response = ("None of the items you mentioned were on your *{}*. "
 		            "You asked to remove: *{}*"
 				.format(list_name, not_present))
+	# Both lists are empty ('all' or 'everything' was the only list item).
+	# See command_remove_edit_file())
+	else:
+		response = "I've removed all of the items on your {}".format(list_name)
 
 	return response
 
@@ -196,6 +206,8 @@ COMMANDS_REMOVE = dict(zip(keys, elements))
 # @bbbot2 remove pizza, a big fat platter, cheerios; and ,,; juice from a new list
 # @bbbot2 remove pizza from that one thing... Oh yeah! The grocery list. Thanks!
 # @bbbot2 remove make lists from my from-do list    # This should work
+# @bbbot2 remove everything from my grocery list.
+# @bbbot2 remove all from my grocery list
 #
 # These should call a failure response
 # @bbbot2 remove
@@ -204,4 +216,6 @@ COMMANDS_REMOVE = dict(zip(keys, elements))
 # @bbbot2 remove from list
 # @bbbot2 remove exercise from my, from-do list
 # @bbbot2 remove cheerios, list pizza and cheerios from my grocery list
+# @bbbot2 remove everything
+# @bbbot2 remove all from list
 # '''

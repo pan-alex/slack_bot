@@ -18,7 +18,7 @@ def command_hi(sender, other_text=None):
     return 'Hi <@{}>!'.format(sender)
 
 
-keys = ('hi', 'hello', 'hey', 'heya', 'howdy', 'greetings', 'how',)
+keys = ('hi', 'hello', 'hey', 'heya', 'howdy', 'greetings',)
 elements = [command_hi] * len(keys)
 COMMANDS_HELLO = dict(zip(keys, elements))
 
