@@ -1,4 +1,4 @@
-## Slack Bot
+## BBbot
 
 <img src="bbbot.png" width="256" height = "256"/>
 
@@ -32,6 +32,8 @@ Below is a list of currently available commands along with their required syntax
 `roll` - "rolls" a N-sided die (N is an integer). - <@bbbot> roll ... {N=20}
 
 
+***
+
 ... - denotes extra text in the message that will not break the bot, but are ignored.
 
 {X=y} - denotes an optional argument. If not provided, will default to value y.
@@ -40,20 +42,23 @@ Below is a list of currently available commands along with their required syntax
 
 ##### List commands
 
-`add` - Adds items to the provided list. If no list exists, it will create a new one - <@bbbot> add [__], and [__] to ... (__) list
+`add` - Adds items to the provided list. If no list exists, it will create a new one - <@bbbot> add [_], and [_] to ... (_) list
 
-`remove` Removes items from the provided list. 'ALL' can be provided as the only argument to clear the list - <@bbbot> remove [__], and [__] from ... (__) list
+`remove` Removes items from the provided list. 'ALL' can be provided as the only argument to clear the list - <@bbbot> remove [_], and [_] from ... (_) list
 
-`read` - Reads all of the items in the provided list. <@bbbot> read .. (__) list
+`read` - Reads all of the items in the provided list. <@bbbot> read .. (_) list
 
 `show` - Shows all of the items in the provided directory. It was intended to be used to show lists, but can be used for any directory in the repository - <@bbbot> show {folder=lists}
 
-`delete` - Deletes the provided list, but only if it is already empty (safety first) - <@bbbot> delete ... (__) list
+`delete` - Deletes the provided list, but only if it is already empty (safety first) - <@bbbot> delete ... (_) list
 
 
-[__] - represents list items (e.g., eggs)
+***
 
-(__) - represents the name of the list (e.g., 'shopping' for a shopping list)
+
+[_] - represents list items (e.g., eggs)
+
+(_) - represents the name of the list (e.g., 'shopping' for a shopping list)
 
 ... - denotes extra text in the message that will not break the bot, but are ignored.
 
