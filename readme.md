@@ -43,6 +43,7 @@ Likewise, more than one keyword can call the same function in some cases. e.g., 
 > <@bbbot> roll ... {N=20}
 
 
+###### Key:
  ... - denotes extra text in the message that will not break the bot, but are ignored.
 
  {X=y} - denotes an optional argument. If not provided, will default to value y.
@@ -74,14 +75,14 @@ These are all related commands that deal with "list" functionality (i.e., the sa
 
 > <@bbbot> delete ... (_) list
 
+###### Key: 
+[_] - represents list items (e.g., eggs)
 
-> [_] - represents list items (e.g., eggs)
+(_) - represents the name of the list (e.g., 'shopping' for a shopping list)
 
-> (_) - represents the name of the list (e.g., 'shopping' for a shopping list)
+... - denotes extra text in the message that will not break the bot, but are ignored.
 
-> ... - denotes extra text in the message that will not break the bot, but are ignored.
-
-> {X=y} - denotes an optional argument. If not provided, will default to value y.
+{X=y} - denotes an optional argument. If not provided, will default to value y.
 
 
 ***
