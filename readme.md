@@ -1,6 +1,6 @@
 ## Slack Bot
 
-![slack_bot_avatar](bbbot.png)
+![slack_bot_avatar](bbbot.png = 256x256)
 
 This is a general-purpose Slack chat bot (named BBbot). The bot works by:
 
@@ -24,28 +24,40 @@ Below is a list of currently available commands along with their required syntax
 
 
 ##### General commands
+
 `hello` - returns hello message back to sender - <@bbbot> hello
+
 `thanks` - returns "you're welcome" message back to sender <@bbbot> thanks
+
 `roll` - "rolls" a N-sided die (N is an integer). - <@bbbot> roll ... {N=20}
 
 
 ... - denotes extra text in the message that will not break the bot, but are ignored.
+
 {X=y} - denotes an optional argument. If not provided, will default to value y.
 
 
 
 ##### List commands
+
 `add` - Adds items to the provided list. If no list exists, it will create a new one - <@bbbot> add [__], and [__] to ... (__) list
+
 `remove` Removes items from the provided list. 'ALL' can be provided as the only argument to clear the list - <@bbbot> remove [__], and [__] from ... (__) list
+
 `read` - Reads all of the items in the provided list. <@bbbot> read .. (__) list
+
 `show` - Shows all of the items in the provided directory. It was intended to be used to show lists, but can be used for any directory in the repository - <@bbbot> show {folder=lists}
+
 `delete` - Deletes the provided list, but only if it is already empty (safety first) - <@bbbot> delete ... (__) list
 
 
 [__] - represents list items (e.g., eggs)
+
 (__) - represents the name of the list (e.g., 'shopping' for a shopping list)
+
 ... - denotes extra text in the message that will not break the bot, but are ignored.
-{X=y}
+
+{X=y} - denotes an optional argument. If not provided, will default to value y.
 
 
 ### Project Directories
