@@ -32,20 +32,20 @@ Likewise, more than one keyword can call the same function in some cases. e.g., 
 
 `hello` - returns hello message back to sender.
 
-<@bbbot> hello
+> <@bbbot> hello
 
 `thanks` - returns "you're welcome" message back to sender.
 
-<@bbbot> thanks
+> <@bbbot> thanks
 
 `roll` - "rolls" a N-sided die (N is an integer).
 
-<@bbbot> roll ... {N=20}
+> <@bbbot> roll ... {N=20}
 
 
-> ... - denotes extra text in the message that will not break the bot, but are ignored.
+ ... - denotes extra text in the message that will not break the bot, but are ignored.
 
-> {X=y} - denotes an optional argument. If not provided, will default to value y.
+ {X=y} - denotes an optional argument. If not provided, will default to value y.
 
 
 
@@ -56,22 +56,23 @@ These are all related commands that deal with "list" functionality (i.e., the sa
 
 `add` - Adds items to the provided list. If no list exists, it will create a new one.
 
-<@bbbot> add [_], and [_] to ... (_) list
+> <@bbbot> add [\_], and [\_] to ... (_) list
 
 `remove` Removes items from the provided list. 'ALL' can be provided as the only argument to clear the list.
 
-<@bbbot> remove [_], and [_] from ... (_) list
+> <@bbbot> remove [\_], and [\_] from ... (_) list
 
 `read` - Reads all of the items in the provided list. 
 
-<@bbbot> read .. (_) list
+> <@bbbot> read .. (_) list
 
 `show` - Shows all of the items in the provided directory. It was intended to be used to show lists, but can be used for any directory in the repository. 
 
-<@bbbot> show {folder=lists}
+> <@bbbot> show {folder=lists}
 
-`delete` - Deletes the provided list, but only if it is already empty (safety first). 
-<@bbbot> delete ... (_) list
+`delete` - Deletes the provided list, but only if it is already empty (safety first).
+
+> <@bbbot> delete ... (_) list
 
 
 > [_] - represents list items (e.g., eggs)
