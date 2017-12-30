@@ -2,8 +2,8 @@
 https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
 and Pybites https://github.com/pybites/slackbot
 
-slack_bot() is the main function that execute's the bot's code. slack_bot() is
-a wrapper and carries out the process below:
+slack_bot() is the main function that execute's the bot's code. slack_bot()
+carries out the process below:
 
 1. find_slack_commands searches Slack events for mentions aimed at the bot and
     feeds the text to handle_command()
@@ -11,9 +11,12 @@ a wrapper and carries out the process below:
     the rest of the message and returns it to handle_command().
 3. handle_command() searches a dictionary to see if the command exists. If so,
     it executes the command (code for each command can be found in the
-    'commands' subfolder). If not, it returns a failure message
+    'commands' subfolder). If not, it returns a failure message.
 
-
+New commands are added by importing the functions from the `commands` subfolder.
+Functions are imported as dictionary entries; key = text that call the command,
+value = function that executes the call). The commands are made functional by
+updateding the COMMANDS dict.
 '''
 
 import time
@@ -27,6 +30,8 @@ from commands.roll import COMMANDS_ROLL
 from commands.list_add import COMMANDS_ADD
 from commands.list_remove import COMMANDS_REMOVE
 from commands.list_read import COMMANDS_READ
+from commands.list_delete import COMMANDS_DELETE
+from commands.list_show import COMMANDS_SHOW
 
 
 # ¯\_(ツ)_/¯
@@ -77,6 +82,8 @@ COMMANDS.update(COMMANDS_ROLL)
 COMMANDS.update(COMMANDS_ADD)
 COMMANDS.update(COMMANDS_REMOVE)
 COMMANDS.update(COMMANDS_READ)
+COMMANDS.update(COMMANDS_DELETE)
+COMMANDS.update(COMMANDS_SHOW)
 
 #################
 

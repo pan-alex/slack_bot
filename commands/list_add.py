@@ -6,13 +6,13 @@ be executed.
 import logging
 import re
 import os
-from commands.list_globals import list_remove_punctuation, PUNCTUATION
+from commands.list_globals import list_remove_punctuation
 
 DELIMITERS = r'[,;]+|and | to '
 
 
 # TEST = 'apples, peanuts, oranges and pizza, and apricots to my todo list please'
-TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
+# TEST = 'pizza, pp, and pineapple to that one thing... Oh yeah! The grocery list. Thanks!'
 
 
 def command_add_correct_syntax(text_no_punc=''):
@@ -22,8 +22,8 @@ def command_add_correct_syntax(text_no_punc=''):
 	correct syntax was supplied to command_add().
 
 	:param text_no_punc: A string with no punctuation except for those in
-	DELIMITERS. Function will look for certain keywords
-	based on the syntax:
+	  DELIMITERS. Function will look for certain keywords
+	  based on the syntax:
 
 	"[__], [__], [__] and [__] to ... (___) list ..."
 
@@ -35,7 +35,7 @@ def command_add_correct_syntax(text_no_punc=''):
 	* ... are any words that can exist in between key words but are ignored.
 
 	:return: A bool. False if any syntax errors exist and True if no syntax
-	errors exist. Conditions checked:
+	  errors exist. Conditions checked:
 
 	* 1: 'to' is in the message
 	* 2: 'list' is in the message
@@ -66,25 +66,22 @@ def command_add_correct_syntax(text_no_punc=''):
 	else:
 		return False
 
-################################################################ How to handle @bbbot2 add to list (nothing between 'to' and 'list')
-
 
 def command_add(sender, other_text=''):
 	"""
-	**Note to self: Implement a way to not write in duplicates**
-
+	**Note to future self: Implement a way to not write in duplicates**
 
 	:param sender: Person who sent the message. This is force-fed to the
-	function when called by handle_command(). Does nothing with it.
+	  function when called by handle_command(). Does nothing with it.
 
 	:param other_text: String containing any other text in the message that
-	was issued after the 'add' command. Function will look for certain keywords
-	based on the syntax:
+	  was issued after the 'add' command. Function will look for certain keywords
+	  based on the syntax:
 
 	"add [__], [__], [__] and [__] to ... (___) list ..."
 
-	* 'add' is required to call command_add() through handle_command(), but is not
-	  actually required inside of command_add.
+	* 'add' is required to call command_add() through handle_command(), but is
+	  not actually required inside of command_add.
 	* [__] represent list items (things to be added to the list; e.g., 'eggs')
 	* ',', 'and', ';' are all delimiters that will separate list items
 	* 'to' signals the end of the list items. Anything before 'to' will be added
@@ -94,9 +91,9 @@ def command_add(sender, other_text=''):
 	  that file in the directory.
 
 	:returns: Writes the list items to the specified file as a new line. Returns
-	a message that includes all of the items in the list.
-	If no file exists under that name, create one and provide a message that a
-	new file was created.
+	  a message that includes all of the items in the list.
+	  If no file exists under that name, create one and provide a message that a
+	  new file was created.
 	"""
 	logging.debug('command_add() evaluated.')
 	text_no_punc = list_remove_punctuation(other_text)
@@ -130,8 +127,8 @@ def command_add(sender, other_text=''):
 	else:
 		response = ("You don't have a list named *{}*. "
 		            "Don't worry - I've made one and added these items: *{}* \n"
-		            "If this was a mistake, use *delete*.".format(
-			list_name, str(list_items)[1:-1]))
+		            "If this was a mistake, use *remove* and then "
+		            "*delete*.".format(list_name, str(list_items)[1:-1]))
 	return response
 
 
