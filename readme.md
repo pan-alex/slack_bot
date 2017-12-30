@@ -1,6 +1,6 @@
 ## Slack Bot
 
-![slack_bot_avatar](bbbot.png =256x256)
+<img src="bbbot.png" width="256" height = "256"/>
 
 This is a general-purpose Slack chat bot (named BBbot). The bot works by:
 
