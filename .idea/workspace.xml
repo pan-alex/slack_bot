@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e19a3432-bf2d-4efd-8d5c-b48989b24b77" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/BBbot.py" afterPath="$PROJECT_DIR$/BBbot.py" />
-      <change beforePath="$PROJECT_DIR$/commands/list_add.py" afterPath="$PROJECT_DIR$/commands/list_add.py" />
-      <change beforePath="$PROJECT_DIR$/commands/list_globals.py" afterPath="$PROJECT_DIR$/commands/list_globals.py" />
-      <change beforePath="$PROJECT_DIR$/commands/list_read.py" afterPath="$PROJECT_DIR$/commands/list_read.py" />
-      <change beforePath="$PROJECT_DIR$/lists/grocery list.txt" afterPath="$PROJECT_DIR$/lists/grocery list.txt" />
+      <change beforePath="$PROJECT_DIR$/commands/hello.py" afterPath="$PROJECT_DIR$/commands/hello.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/slack_bot$BBbot.coverage" NAME="BBbot Coverage Results" MODIFIED="1514598594013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/slack_bot$BBbot.coverage" NAME="BBbot Coverage Results" MODIFIED="1514598969020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/slack_bot$list.coverage" NAME="list Coverage Results" MODIFIED="1513972579187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/commands" />
   </component>
   <component name="FileEditorManager">
@@ -32,14 +28,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_show.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list_show.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commands/list_show.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="75">
+              <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
               <folding>
                 <element signature="e#175#189#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hello.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commands/hello.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="26" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thanks.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/commands/thanks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,8 +87,8 @@
       <file leaf-file-name="BBbot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BBbot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+            <state relative-caret-position="-24">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="e#1047#1058#0" expanded="true" />
               </folding>
@@ -161,14 +177,15 @@
         <option value="$PROJECT_DIR$/../Scripts/janet_expenses_sep-dec2017.py" />
         <option value="$PROJECT_DIR$/commands/help.py" />
         <option value="$PROJECT_DIR$/commands/roll.py" />
-        <option value="$PROJECT_DIR$/commands/hello.py" />
         <option value="$PROJECT_DIR$/commands/list_remove.py" />
         <option value="$PROJECT_DIR$/commands/list_add.py" />
         <option value="$PROJECT_DIR$/commands/list_read.py" />
         <option value="$PROJECT_DIR$/commands/list_delete.py" />
         <option value="$PROJECT_DIR$/commands/list_globals.py" />
-        <option value="$PROJECT_DIR$/BBbot.py" />
         <option value="$PROJECT_DIR$/commands/list_show.py" />
+        <option value="$PROJECT_DIR$/commands/hello.py" />
+        <option value="$PROJECT_DIR$/BBbot.py" />
+        <option value="$PROJECT_DIR$/commands/thanks.py" />
       </list>
     </option>
   </component>
@@ -204,7 +221,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/commands/list_delete.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/commands/hello.py" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
@@ -309,7 +326,7 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32005402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="0" y="0" width="434" height="848" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34120172" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3197425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3197425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09398496" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -363,14 +380,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/commands/hello.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commands/reminder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -650,14 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/commands/hello.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commands/list_add.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2925">
@@ -672,16 +673,6 @@
           <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
           <folding>
             <element signature="e#175#189#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBbot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
-          <folding>
-            <element signature="e#1047#1058#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -706,11 +697,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/commands/list_show.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        <state relative-caret-position="75">
+          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
           <folding>
             <element signature="e#175#189#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commands/hello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="26" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BBbot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <element signature="e#1047#1058#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commands/thanks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>

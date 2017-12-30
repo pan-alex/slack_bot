@@ -31,5 +31,4 @@ COMMANDS_HELLO = dict(zip(keys, elements))
 # @bbbot2 greetings robot
 # @bbbot2 howdy-yall.
 # sup @everyone. @bbbot2 hey what's up
-# Alex is stupid. @bbbot2 how are you?
-# @bbbot2 how's it going?
+
