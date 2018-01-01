@@ -1,8 +1,1 @@
-Required modules
-logging
-re
-string
-time
-slackclient
-os
-random
+slackclient==1.1.0
