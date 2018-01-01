@@ -1,4 +1,4 @@
-'''The code used to initialize the bot is based on fullstackpython
+"""The code used to initialize the bot is based on fullstackpython
 https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
 and Pybites https://github.com/pybites/slackbot
 
@@ -17,7 +17,7 @@ New commands are added by importing the functions from the `commands` subfolder.
 Functions are imported as dictionary entries; key = text that call the command,
 value = function that executes the call). The commands are made functional by
 updateding the COMMANDS dict.
-'''
+"""
 
 import time
 import logging
@@ -53,22 +53,23 @@ slack_client = SlackClient(SLACK_BOT_TOKEN)
 ############
 
 def command_help(sender, other_text=''):
-    '''
+    """
     :param sender: The sender, which is force-fed to the function when it is
-    called by handle_command(). Does nothing with it.
+      called by handle_command(). Does nothing with it.
 
     :param args: Any text after the word 'help'. Likewise, args are force-fed to
-    the function when it is called by handle_command(). Does nothing with them.
+      the function when it is called by handle_command(). Does nothing with them.
 
     :return: Outputs a list of valid commands.
-    '''
-    response = ("Use the syntax: '{} *command*' so that I know you're talking to "
-                "me!\n Here is a list of commands I know how to respond to:"
-                "\n").format(AT_BOT)
+    """
+    response = ("Here is a list of commands that I know how to respond to. "
+                "Use the syntax: '{} *command*' so that I know you're talking"
+                "to me!").format(AT_BOT)
     # Append the list of commands. Crop out brackets
     response += str(sorted(COMMANDS))[1:-1]
-    response += ("\nStill confused? Find out how I work at "
+    response += ("\nStill confused? Read how I work at "
         "https://github.com/pan-alex/slack_bot")
+    
     return response
 
 
@@ -95,11 +96,11 @@ def parse_command(text):
     Intended to wrapped by handle_command().
 
     :text: A string. The Slack message directed at the bot, minus the <@bot>
-    mention itself.
+      mention itself.
 
     :return: Converts punctuation on the first word to spaces and interprets the
-    first word as the command. Returns the remaining text as a string without
-    punctuation stripping.
+      first word as the command. Returns the remaining text as a string without
+      punctuation stripping.
     """
     s = string.punctuation
     command = text.translate(text.maketrans(s, ' ' * len(s))).split()[0]
@@ -108,15 +109,15 @@ def parse_command(text):
 
 
 def handle_command(text, channel, sender):
-    '''
+    """
     :param text:  A text string containing a command directed at the bot
 
     :param channel: A string containing the channel that the command was given
-    from.
+      from.
 
     :return: If command is a valid command, execute that command. If not,
-    display a message that the command is not valid.
-    '''
+      display a message that the command is not valid.
+    """
     command, other_text = parse_command(text)
 
     if command in COMMANDS:
@@ -132,19 +133,19 @@ def handle_command(text, channel, sender):
 
 
 def find_slack_commands(events):
-    '''
+    """
     Parses slack events for direct mentions of the bot.
 
     :param events: An event is anything remotely interesting that happens in
-    Slack. Messages, user status changes, and users typing are all events. Each
-    event is stored as a dictionary and the events are stored in a list. Certain
-    elements of the event can be extracted using dict functionality.
+      Slack. Messages, user status changes, and users typing are all events. Each
+      event is stored as a dictionary and the events are stored in a list. Certain
+      elements of the event can be extracted using dict functionality.
 
     :return: If an event directly mentions the bot (ignoring self-mentions by
-    the bot), return the text (all lowercase), the channel, and the user that
-    sent the command. Otherwise return None for all.
+      the bot), return the text (all lowercase), the channel, and the user that
+      sent the command. Otherwise return None for all.
 
-    '''
+    """
     if events and len(events) > 0:
         logging.debug('event in find_slack_commands(): ' + str(events))
         for event in events:
@@ -166,21 +167,19 @@ def find_slack_commands(events):
 
 
 def slack_bot(read_delay=1):
-    '''
+    """
     Initializes the bot. Once initialized, the bot will run through an infinite
     loop where it will check all slack events for messages that are directed at
     it (via find_slack_commands). Any direct messages are passed to
     handle_command, which will attempt to execute the command.
 
     :param read_delay: Implements a 1 second delay between each loop of of the
-    function to prevent CPU overload.
+      function to prevent CPU overload.
 
     :return: If the bot successfully connects, it will display a success
-    message. If it fails, display a failure message. Outputs from handle_command
-    are posted directly to Slack.
-    '''
-     # 1 second delay between reading
-
+      message. If it fails, display a failure message. Outputs from handle_command
+      are posted directly to Slack.
+    """
     if slack_client.rtm_connect():
         print("BBbot is connected and running!")
         # Command below can be used to retrieve ID

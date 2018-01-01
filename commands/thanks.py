@@ -1,8 +1,8 @@
-'''
+"""
 This command is import into BBbot.py as a commannd that the Slack bot can
 handle. When called by any of the keywords listed in `keys`, command_thanks()
 will be executed. This works basically the same way as command_hi().
-'''
+"""
 import logging
 
 
@@ -27,4 +27,3 @@ COMMANDS_THANKS = dict(zip(keys, elements))
 #### tests to run in Slack
 # @bbbot2 thank you!
 # @bbbot2 thanks@@
-

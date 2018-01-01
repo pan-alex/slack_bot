@@ -1,44 +1,44 @@
-'''
+"""
 This command is import into BBbot.py as a command that the Slack bot can
 handle. When called by any of the keywords listed in `keys`, command_roll() will
 be executed.
-'''
+"""
 import logging
 import random
 
 
 def command_roll(sender, other_text=''):
-	'''
-	:param sender: Person who sent the command
-	:param other_text: A string containing all of the words following the
-	command itself. The function looks integers inside this list and uses the
-	first integer it encounters as the number of sides on the die.
-	:return: Randomly generates an integer between 1 and the number of sides on
-	the die. If no number is supplied in args, it defaults to 20.
-	'''
-	logging.debug('command_roll() evaluated.')
-	logging.debug('other_text in command_roll: ' + other_text)
-	sides_on_die = 20
+    """
+    :param sender: Person who sent the command
+    :param other_text: A string containing all of the words following the
+    command itself. The function looks integers inside this list and uses the
+    first integer it encounters as the number of sides on the die.
+    :return: Randomly generates an integer between 1 and the number of sides on
+    the die. If no number is supplied in args, it defaults to 20.
+    """
+    logging.debug('command_roll() evaluated.')
+    logging.debug('other_text in command_roll: ' + other_text)
+    sides_on_die = 20
 
-	args = other_text.translate(other_text.maketrans('-', ' ')).split()
-	logging.debug('args in command_roll: ' + str(other_text))
+    args = other_text.translate(other_text.maketrans('-', ' ')).split()
+    logging.debug('args in command_roll: ' + str(other_text))
 
-	if args:
-		for item in args:
-			logging.debug('item in command_roll: ' + str(item))
-			if item.isnumeric() and int(item) > 1:
-				sides_on_die = int(item)
-				break
-	logging.debug('sides_on_die in command_roll: ' + str(sides_on_die))
+    if args:
+        for item in args:
+            logging.debug('item in command_roll: ' + str(item))
+            if item.isnumeric() and int(item) > 1:
+                sides_on_die = int(item)
+                break
+    logging.debug('sides_on_die in command_roll: ' + str(sides_on_die))
 
-	roll = random.randint(1, sides_on_die)
+    roll = random.randint(1, sides_on_die)
 
-	if roll == 1: emote = '(╯°□°）╯︵ ┻━┻ '
-	elif roll == sides_on_die: emote = '(づ◕‿◕)づ '
-	else: emote = ''
-	logging.debug('emote: ' + str(emote))
-	return '{}<@{}> rolled {} on a {}-sided die!'.format(
-		emote, sender, roll, sides_on_die)
+    if roll == 1: emote = '(╯°□°）╯︵ ┻━┻ '
+    elif roll == sides_on_die: emote = '(づ◕‿◕)づ '
+    else: emote = ''
+    logging.debug('emote: ' + str(emote))
+    return '{}<@{}> rolled {} on a {}-sided die!'.format(
+        emote, sender, roll, sides_on_die)
 
 ####
 
