@@ -1,6 +1,6 @@
 ## BBbot
 
-<img src="bbbot.png" width="256" height = "256"/>
+<img src="bbbot.png" width="128" height = "128"/>
 
 This is a general-purpose Slack chat bot (named BBbot). The bot works by:
 
@@ -9,6 +9,8 @@ This is a general-purpose Slack chat bot (named BBbot). The bot works by:
 - The function searches a dictionary to see if the command exists. If so, it executes the command. If not, it returns a failure message.
 
 
+
+<img src="bbbot chat.png">
 
 ### Calling commands:
 

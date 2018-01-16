@@ -37,12 +37,12 @@ from commands.list_show import COMMANDS_SHOW
 
 # ¯\_(ツ)_/¯
 
-logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().setLevel(logging.CRITICAL)
 
 # Constants
 # SLACK_BOT_TOKEN is stored in a c file to keep it out of version control.
 SLACK_BOT_TOKEN = open('Bot User OAuth Access Token.c').read()
-BOT_ID = 'U8HGESKV0'    # Can be retrieved by clicking on the bot in Slack
+BOT_ID = 'U8SJUN9NU'    # Can be retrieved by clicking on the bot in Slack
 AT_BOT = "<@" + BOT_ID + ">"
 EXAMPLE_COMMAND = "do"
 
